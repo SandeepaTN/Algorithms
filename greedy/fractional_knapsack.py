@@ -4,7 +4,7 @@ from sys import stdin
 def optimal_value(capacity, weights, values):
     value = 0.
     net_value=[values[i]/weights[i] for i in range(len(values))]
-    while capacity>0: 
+    while capacity>0 and sum(weights)>0: 
         max_index=net_value.index(max(net_value))
         if capacity>=weights[max_index]:
             value+=values[max_index]
