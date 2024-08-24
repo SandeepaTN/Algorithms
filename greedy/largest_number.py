@@ -1,19 +1,31 @@
-from itertools import permutations
+from functools import cmp_to_key
 
+def custom_compare(x, y):
+   
+    if x + y > y + x:
+        return -1
+    elif x + y < y + x:
+        return 1
+    else:
+        return 0
 
 def largest_number_naive(numbers):
     numbers = list(map(str, numbers))
-
-    largest=''
-    numbers.sort(reverse=True)
-    numbers.sort(key=lambda x:int(x[0]),reverse=True)
     
-    for _ in range(len(numbers)):
-        largest+=numbers[_]
+    if not numbers:
+        return "0"
+
     
+    sorted_numbers = sorted(numbers, key=cmp_to_key(custom_compare))
+    
+    
+    if sorted_numbers[0] == "0":
+        return "0"
 
-    return int(largest)
-
+ 
+    largest = ''.join(sorted_numbers)
+    
+    return largest
 
 if __name__ == '__main__':
     _ = int(input())
