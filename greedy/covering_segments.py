@@ -8,8 +8,10 @@ def optimal_points(segments):
     segments.sort(key=lambda x: x.end) 
     while len(segments)>0:
         s=segments[0]
+        
         points.append(s.end)
         segments=[i for i in segments if i.start>s.end] 
+        
     
     return points
 
